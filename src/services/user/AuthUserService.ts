@@ -19,14 +19,12 @@ const AuthUserService = {
 
     if (!passwordMatch) throw new Error("user/password incorrect");
 
-    const privateKey: string = process.env.SECRET_JWT || "cmd&dlvy";
-
     const token = sign(
       {
         name: user.name,
         email: user.email,
       },
-      privateKey,
+      process.env.SECRET_JWT,
       {
         subject: user.id,
         expiresIn: "30d",
