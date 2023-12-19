@@ -3,6 +3,7 @@ import { Router } from "express";
 import { isAuthenticated } from "../middlewares/isAuthenticated";
 import { CreateProductController } from "../controllers/product/CreateProductController";
 import uploadConfig from "../config/multer";
+import { ListByCategoryController } from "../controllers/product/ListByCategoryController";
 
 const upload = multer(uploadConfig.upload("tmp"));
 
@@ -13,6 +14,11 @@ productRouter.post(
   isAuthenticated,
   upload.single("banner"),
   CreateProductController.handle
+);
+productRouter.get(
+  "/category/product",
+  isAuthenticated,
+  ListByCategoryController.handle
 );
 
 export { productRouter };
