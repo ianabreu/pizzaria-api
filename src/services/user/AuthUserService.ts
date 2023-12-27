@@ -15,7 +15,7 @@ const AuthUserService = {
     });
     if (!user) throw new Error("user/password incorrect");
 
-    const passwordMatch = compare(password, user.password);
+    const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) throw new Error("user/password incorrect");
 
