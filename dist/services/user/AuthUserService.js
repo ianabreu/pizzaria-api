@@ -16,7 +16,7 @@ const AuthUserService = {
         });
         if (!user)
             throw new Error("user/password incorrect");
-        const passwordMatch = (0, bcryptjs_1.compare)(password, user.password);
+        const passwordMatch = await (0, bcryptjs_1.compare)(password, user.password);
         if (!passwordMatch)
             throw new Error("user/password incorrect");
         const token = (0, jsonwebtoken_1.sign)({
